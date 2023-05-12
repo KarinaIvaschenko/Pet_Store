@@ -36,9 +36,9 @@ export default class App extends React.Component {
                         actions={
                             <>
                                 <Button
-                                    onClick={(event) =>
-                                        this.handlerOpenModal("modal1")
-                                    }
+                                    // onClick={(event) =>
+                                    //     this.handlerOpenModal("modal1")
+                                    // }
                                     width="100px"
                                     backgroundColor="#b3382c"
                                     text="Ok"
@@ -66,9 +66,9 @@ export default class App extends React.Component {
                         actions={
                             <>
                                 <Button
-                                    onClick={(event) =>
-                                        this.handlerOpenModal("modal2")
-                                    }
+                                    // onClick={(event) =>
+                                    //     this.handlerOpenModal("modal2")
+                                    // }
                                     backgroundColor="#f0dd2f"
                                     text={"Ok"}
                                 />

@@ -16,6 +16,9 @@ export default class Modal extends React.Component {
                     className={
                         background === "blue" ? cl.modalWind : cl.modalBlue
                     }
+                    onClick={(event) => {
+                        event.stopPropagation();
+                    }}
                 >
                     <h1 className={cl.title}>{header}</h1>
                     {closeButton && (
