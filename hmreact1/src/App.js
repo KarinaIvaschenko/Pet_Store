@@ -1,88 +1,120 @@
 import React from "react";
+import ProductList from "./components/Product/ProductList";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Modal from "./components/Modal/Modal";
+import Button from "./components/Button";
 import "./app.scss";
-import Button from "./components/Button/Button";
+import sendRequest from "./helpers/sendRequest";
+
 export default class App extends React.Component {
-    state = { modal1: false, modal2: false };
-    handlerOpenModal = (modalID) => {
-        this.setState({ [modalID]: !this.state[modalID] });
+    state = {
+        favorites: [],
+        cart: [],
+        modal: false,
+        readyToCart: null,
+        products: [],
+    };
+
+    componentDidMount() {
+        sendRequest("product.json").then((data) => {
+            this.setState({ products: data });
+        });
+    }
+    componentDidUpdate() {
+        if (this.state.favorites.length) {
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(this.state.favorites)
+            );
+        }
+        if (this.state.cart.length) {
+            localStorage.setItem("cart", JSON.stringify(this.state.cart));
+        }
+    }
+    addFavorites = (card) => {
+        const isFavorites = this.state.favorites.some(
+            (item) => item.id === card.id
+        );
+        if (!isFavorites) {
+            this.setState((prev) => ({
+                favorites: [...prev.favorites, card],
+            }));
+        }
+    };
+    removeFavorites = (card) => {
+        const newFavorites = this.state.favorites.filter(
+            (item) => item.id !== card.id
+        );
+        this.setState(() => ({
+            favorites: newFavorites,
+        }));
+    };
+
+    addToCart = (card) => {
+        const isInCart = this.state.cart.some((item) => item.id === card.id);
+        if (!isInCart) {
+            this.setState((prev) => ({
+                cart: [...prev.cart, card],
+                modal: !prev.modal,
+                readyToCart: null,
+            }));
+        }
+    };
+
+    addReadyToCart = (card) => {
+        this.setState(() => ({
+            readyToCart: card,
+        }));
+    };
+
+    toggleModal = () => {
+        this.setState((prev) => ({
+            modal: !prev.modal,
+        }));
     };
 
     render() {
+        const { favorites, cart } = this.state;
         return (
             <>
-                <div className="buttons">
-                    <Button
-                        onClick={(event) => this.handlerOpenModal("modal1")}
-                        backgroundColor="#b3382c"
-                        text="Open first modal"
-                        isDisabled={this.state.modal2 ? true : false}
+                <Header countStar={favorites.length} countCart={cart.length} />
+                <main className="main">
+                    <ProductList
+                        addFavorites={this.addFavorites}
+                        removeFavorites={this.removeFavorites}
+                        openModal={this.toggleModal}
+                        addToCart={this.addToCart}
+                        addReadyToCart={this.addReadyToCart}
+                        products={this.state.products}
                     />
-                    <Button
-                        onClick={(event) => this.handlerOpenModal("modal2")}
-                        backgroundColor="#f0dd2f"
-                        text=" Open second modal"
-                        isDisabled={this.state.modal1 ? true : false}
-                    />
-                </div>
-                {this.state.modal1 && (
-                    <Modal
-                        header={"Header"}
-                        closeButton
-                        background="blue"
-                        id="modal1"
-                        close={this.handlerOpenModal}
-                        text={"Text"}
-                        actions={
-                            <>
-                                <Button
-                                    // onClick={(event) =>
-                                    //     this.handlerOpenModal("modal1")
-                                    // }
-                                    width="100px"
-                                    backgroundColor="#b3382c"
-                                    text="Ok"
-                                />
-                                <Button
-                                    onClick={(event) =>
-                                        this.handlerOpenModal("modal1")
-                                    }
-                                    width="100px"
-                                    backgroundColor="#b3382c"
-                                    text="Cancel"
-                                />
-                            </>
-                        }
-                    />
-                )}
-                {this.state.modal2 && (
-                    <Modal
-                        header={"Header"}
-                        closeButton
-                        id="modal2"
-                        backgroundColor="#f0dd2f"
-                        close={this.handlerOpenModal}
-                        text={"Text"}
-                        actions={
-                            <>
-                                <Button
-                                    // onClick={(event) =>
-                                    //     this.handlerOpenModal("modal2")
-                                    // }
-                                    backgroundColor="#f0dd2f"
-                                    text={"Ok"}
-                                />
-                                <Button
-                                    onClick={(event) =>
-                                        this.handlerOpenModal("modal2")
-                                    }
-                                    backgroundColor="#f0dd2f"
-                                    text={"Cancel"}
-                                />
-                            </>
-                        }
-                    />
-                )}
+                    {this.state.modal && (
+                        <Modal
+                            text="Вы точно хотите добавить в корзину?"
+                            header="Подтвердение"
+                            close={this.toggleModal}
+                            actions={
+                                <>
+                                    <Button
+                                        onClick={() => {
+                                            this.addToCart(
+                                                this.state.readyToCart
+                                            );
+                                        }}
+                                        text={"Добавить"}
+                                        backgroundColor="#d3c1d9"
+                                    />
+                                    <Button
+                                        onClick={this.toggleModal}
+                                        backgroundColor="#d3c1d9"
+                                        text={"Отмена"}
+                                    />
+                                </>
+                            }
+                        />
+                    )}
+                </main>
+                <Footer />
             </>
         );
     }

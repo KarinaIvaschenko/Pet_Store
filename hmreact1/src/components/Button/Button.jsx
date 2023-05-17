@@ -1,12 +1,21 @@
 import React from "react";
-import btn from "./button.module.scss";
+import "./Button.scss";
+import cx from "classnames";
+
 export default class Button extends React.Component {
     render() {
-        const { onClick, backgroundColor, text, isDisabled, width } =
-            this.props;
+        const {
+            onClick,
+            classNames,
+            btnActive,
+            backgroundColor,
+            text,
+            isDisabled,
+            width,
+        } = this.props;
         return (
             <button
-                className={btn.button}
+                className={cx("button", classNames, { active: btnActive })}
                 onClick={onClick}
                 style={{ backgroundColor: backgroundColor, width: width }}
                 disabled={isDisabled}
