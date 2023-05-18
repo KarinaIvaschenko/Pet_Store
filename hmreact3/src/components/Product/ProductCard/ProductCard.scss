@@ -1,0 +1,36 @@
+.productCard {
+    border: 1px solid #d3c1f4;
+    border-radius: 15px;
+    width: 300px;
+    background-color: aliceblue;
+    padding: 20px;
+    display: grid;
+    justify-items: center;
+    position: relative;
+}
+.img {
+    width: 150px;
+    height: 160px;
+}
+.title {
+    text-align: center;
+    font-size: 20px;
+}
+.star {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    stroke-width: 1px;
+    stroke: #000;
+    color: transparent;
+
+    &--active {
+        stroke: transparent;
+        color: #d3c1f4;
+    }
+}
+.button--size {
+    font-size: 20px;
+    cursor: pointer;
+}
