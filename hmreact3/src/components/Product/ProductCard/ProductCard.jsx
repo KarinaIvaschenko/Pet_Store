@@ -1,8 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../Button";
-import { ReactComponent as Star } from "./icon/star.svg";
+import { ReactComponent as Star } from "./img/star.svg";
 import "./ProductCard.scss";
+
+const checkIsFavorites = (id) => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    return favorites.find((item) => item.id === id) ? true : false;
+};
 
 const ProductCard = ({
     card,
@@ -11,8 +16,9 @@ const ProductCard = ({
     openModal,
     addReadyToCart,
 }) => {
-    const [isFaworites, setIsFavorites] = useState(false);
+    const [isFavorites, setIsFavorites] = useState(checkIsFavorites(card.id));
     const { image, title, price, vendorСode, color } = card;
+
     return (
         <div className="productCard">
             <img className="img" src={image} alt="" />
@@ -21,10 +27,10 @@ const ProductCard = ({
             <p className="vendor-code">Артикул: {vendorСode}</p>
             <p>Цвет: {color}</p>
             <span
-                className={isFaworites ? "star star--active" : "star"}
+                className={isFavorites ? "star star--active" : "star"}
                 onClick={() => {
                     setIsFavorites((prev) => !prev);
-                    if (!isFaworites) {
+                    if (!isFavorites) {
                         addFavorite(card);
                     } else {
                         removeFavorites(card);

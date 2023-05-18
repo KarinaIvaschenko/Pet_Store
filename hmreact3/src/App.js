@@ -8,8 +8,12 @@ import sendRequest from "./helpers/sendRequest";
 import "./app.scss";
 
 const App = () => {
-    const [favorites, setFavorites] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [favorites, setFavorites] = useState(
+        JSON.parse(localStorage.getItem("favorites")) || []
+    );
+    const [cart, setCart] = useState(
+        JSON.parse(localStorage.getItem("cart")) || []
+    );
     const [modal, setModal] = useState(false);
     const [readyToCart, setReadyToCart] = useState(null);
     const [products, setProducts] = useState([]);
