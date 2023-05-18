@@ -10,6 +10,7 @@ export default class ProductCard extends React.Component {
             card,
             addFavorite,
             removeFavorites,
+
             openModal,
             addReadyToCart,
         } = this.props;
