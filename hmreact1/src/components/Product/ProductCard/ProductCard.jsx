@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../Button";
-import { ReactComponent as Star } from "./icon/star.svg";
+import { ReactComponent as Star } from "./img/star.svg";
 import "./ProductCard.scss";
 
 export default class ProductCard extends React.Component {
