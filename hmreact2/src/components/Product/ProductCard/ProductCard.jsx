@@ -3,14 +3,21 @@ import Button from "../../Button";
 import { ReactComponent as Star } from "./img/star.svg";
 import "./ProductCard.scss";
 
+function checkIsFavorites(id) {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    return favorites.find((item) => item.id === id) ? true : false;
+}
+
 export default class ProductCard extends React.Component {
     state = { isFaworites: false, isCart: false };
+    componentDidMount() {
+        this.setState({ isFaworites: checkIsFavorites(this.props.card.id) });
+    }
     render() {
         const {
             card,
             addFavorite,
             removeFavorites,
-
             openModal,
             addReadyToCart,
         } = this.props;
