@@ -9,8 +9,8 @@ import sendRequest from "./helpers/sendRequest";
 
 export default class App extends React.Component {
     state = {
-        favorites: [],
-        cart: [],
+        favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+        cart: JSON.parse(localStorage.getItem("cart")) || [],
         modal: false,
         readyToCart: null,
         products: [],
