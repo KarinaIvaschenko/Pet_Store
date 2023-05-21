@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-import ProductList from "./components/Product/ProductList";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import AppRoutes from "./routes";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Modal from "./components/Modal/Modal";
-import Button from "./components/Button";
-import sendRequest from "./helpers/sendRequest";
 import "./app.scss";
-
+import Footer from "./components/Footer/Footer";
+import sendRequest from "./helpers/sendRequest";
 const App = () => {
     const [favorites, setFavorites] = useState(
         JSON.parse(localStorage.getItem("favorites")) || []
@@ -14,9 +12,8 @@ const App = () => {
     const [cart, setCart] = useState(
         JSON.parse(localStorage.getItem("cart")) || []
     );
-    const [modal, setModal] = useState(false);
-    const [readyToCart, setReadyToCart] = useState(null);
     const [products, setProducts] = useState([]);
+    const [readyToCart, setReadyToCart] = useState(null);
 
     useEffect(() => {
         sendRequest("product.json").then((data) => {
@@ -33,6 +30,24 @@ const App = () => {
         }
     }, [favorites, cart]);
 
+    const addReadyToCart = (card) => {
+        setReadyToCart(card);
+    };
+
+    const addToCart = (card) => {
+        const isInCart = cart.some((item) => item.id === card.id);
+        if (!isInCart) {
+            setCart((prev) => [...prev, card]);
+            setReadyToCart(null);
+        }
+    };
+
+    const removeCart = (card) => {
+        const newCart = cart.filter((item) => item.id !== card.id);
+        setCart(() => newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+    };
+
     const addFavorites = (card) => {
         const isFavorites = favorites.some((item) => item.id === card.id);
         if (!isFavorites) {
@@ -42,59 +57,27 @@ const App = () => {
     const removeFavorites = (card) => {
         const newFavorites = favorites.filter((item) => item.id !== card.id);
         setFavorites(() => newFavorites);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
     };
 
-    const addToCart = (card) => {
-        const isInCart = cart.some((item) => item.id === card.id);
-        if (!isInCart) {
-            setCart((prev) => [...prev, card]);
-            setModal((prev) => !prev);
-            setReadyToCart(null);
-        }
-    };
-
-    const addReadyToCart = (card) => {
-        setReadyToCart(card);
-    };
-
-    const toggleModal = () => {
-        setModal((prev) => !prev);
-    };
     return (
         <>
             <Header countStar={favorites.length} countCart={cart.length} />
+            <AppRoutes
+                favorites={favorites}
+                cart={cart}
+                products={products}
+                setFavorites={setFavorites}
+                setCart={setCart}
+                addFavorites={addFavorites}
+                removeFavorites={removeFavorites}
+                readyToCart={readyToCart}
+                addToCart={addToCart}
+                removeCart={removeCart}
+                addReadyToCart={addReadyToCart}
+            />
             <main className="main">
-                <ProductList
-                    addFavorites={addFavorites}
-                    removeFavorites={removeFavorites}
-                    openModal={toggleModal}
-                    addToCart={addToCart}
-                    addReadyToCart={addReadyToCart}
-                    products={products}
-                />
-                {modal && (
-                    <Modal
-                        text="Вы точно хотите добавить в корзину?"
-                        header="Подтвердение"
-                        close={toggleModal}
-                        actions={
-                            <>
-                                <Button
-                                    onClick={() => {
-                                        addToCart(readyToCart);
-                                    }}
-                                    text={"Добавить"}
-                                    backgroundColor="#d3c1d9"
-                                />
-                                <Button
-                                    onClick={toggleModal}
-                                    backgroundColor="#d3c1d9"
-                                    text={"Отмена"}
-                                />
-                            </>
-                        }
-                    />
-                )}
+                <Outlet />
             </main>
             <Footer />
         </>
