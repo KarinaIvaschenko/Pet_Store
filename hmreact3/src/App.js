@@ -63,20 +63,20 @@ const App = () => {
     return (
         <>
             <Header countStar={favorites.length} countCart={cart.length} />
-            <AppRoutes
-                favorites={favorites}
-                cart={cart}
-                products={products}
-                setFavorites={setFavorites}
-                setCart={setCart}
-                addFavorites={addFavorites}
-                removeFavorites={removeFavorites}
-                readyToCart={readyToCart}
-                addToCart={addToCart}
-                removeCart={removeCart}
-                addReadyToCart={addReadyToCart}
-            />
             <main className="main">
+                <AppRoutes
+                    favorites={favorites}
+                    cart={cart}
+                    products={products}
+                    setFavorites={setFavorites}
+                    setCart={setCart}
+                    addFavorites={addFavorites}
+                    removeFavorites={removeFavorites}
+                    readyToCart={readyToCart}
+                    addToCart={addToCart}
+                    removeCart={removeCart}
+                    addReadyToCart={addReadyToCart}
+                />
                 <Outlet />
             </main>
             <Footer />
