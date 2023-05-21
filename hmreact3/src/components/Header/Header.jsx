@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navigation from "../Navigation";
 import PropTypes from "prop-types";
 import image from "./img/shopingcart.ico";
@@ -9,14 +10,20 @@ const Header = ({ countStar, countCart }) => {
         <header className="header">
             <div className="header__option">
                 <Navigation />
-                <span className="chosenCount">
-                    {countStar}
-                    <Chosen />
-                </span>
-                <span className="cartCount">
-                    {countCart}
-                    <img className="cartImg" src={image} alt="" />
-                </span>
+                <div className="icon">
+                    <Link to="/favorites">
+                        <span className="chosenCount">
+                            {countStar}
+                            <Chosen />
+                        </span>
+                    </Link>
+                    <Link to="/cart">
+                        <span className="cartCount">
+                            {countCart}
+                            <img className="cartImg" src={image} alt="" />
+                        </span>
+                    </Link>
+                </div>
             </div>
         </header>
     );

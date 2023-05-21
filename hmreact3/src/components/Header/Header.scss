@@ -7,7 +7,7 @@
 .header__option {
     display: flex;
     justify-content: flex-end;
-    padding-right: 20px;
+    padding-right: 40px;
 }
 .chosenSvg {
     margin-right: 15px;
@@ -24,4 +24,8 @@
 .cartCount {
     display: flex;
     align-items: center;
+}
+.icon {
+    display: flex;
+    align-self: center;
 }

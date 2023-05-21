@@ -2,16 +2,13 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 import ProductCard from "../../components/Product/ProductCard/ProductCard";
-import "./PageHome.scss";
 import ProductWrapper from "../../components/Product/ProductWrapper/ProductWrapper";
 
 const PageHome = ({
     products,
-    cart,
     removeFavorites,
     addFavorites,
     addToCart,
-    setCart,
     addReadyToCart,
     readyToCart,
 }) => {
