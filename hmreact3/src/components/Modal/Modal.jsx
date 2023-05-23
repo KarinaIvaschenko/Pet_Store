@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { ReactComponent as Close } from "./icon/Close.svg";
+import { ReactComponent as Close } from "./img/Close.svg";
 import cl from "./modal.module.scss";
 
 const Modal = ({ id, header, close, text, actions }) => {
