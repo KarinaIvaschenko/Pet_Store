@@ -1,0 +1,95 @@
+
+[{
+    "id": 1,
+    "name": "Ошейник для собак",
+    "price": 500,
+    "image": "https://content2.rozetka.com.ua/goods/images/big/305909908.jpg",
+    "article": "DOG123",
+    "color": "Розовый"
+    },
+    {
+    "id": 2,
+    "name": "Корм для щенков",
+    "price": 1200,
+    "image": "https://zoolove.com.ua/components/com_jshopping/files/img_products/full_royal-canin-mini-puppy-2022-zoolove.jpg",
+    "article": "DOG456",
+    "color": "Синий"
+    },
+    {
+    "id": 3,
+    "name": "Игрушка для собак",
+    "price": 300,
+    "image": "https://harleyandcho.com.ua/assets/images/products/1997/dsc03897.jpg",
+    "article": "DOG789",
+    "color": "Синий"
+    },
+    {
+    "id": 4,
+    "name": "Мячик для собак",
+    "price": 200,
+    "image": "https://images.prom.ua/3458002272_igrushka-dlya-sobak.jpg",
+    "article": "DOG987",
+    "color": "Зеленый"
+    },
+    {
+    "id": 5,
+    "name": "Шампунь для собак",
+    "price": 700,
+    "image": "https://pethouse.ua/assets/images/prods/trixie/0000046801.jpg",
+    "article": "DOG654",
+    "color": "Белый"
+    },
+    {
+    "id": 6,
+    "name": "Намордник для собак",
+    "price": 800,
+    "image": "https://ireland.apollo.olxcdn.com/v1/files/3xpy2oaikhcl2-UA/image",
+    "article": "DOG321",
+    "color": "Черный"
+    },
+    {
+    "id": 7,
+    "name": "Коврик для собак",
+    "price": 900,
+    "image": "https://pethouse.ua/assets/images/prods/wahopet/0000151531.jpg",
+    "article": "DOG246",
+    "color": "Коричневый"
+    },
+    {
+    "id": 8,
+    "name": "Косточка для собак",
+    "price": 150,
+    "image": "https://cdn.27.ua/190/a8/13/7120915_1.jpeg",
+    "article": "DOG753",
+    "color": "Бежевый"
+    },
+    {
+    "id": 9,
+    "name": "Поводок для собак",
+    "price": 1000,
+    "image": "https://content2.rozetka.com.ua/goods/images/big_tile/150448185.jpg",
+    "article": "DOG135",
+    "color": "Фиолетовый"
+    },
+    {
+    "id": 10,
+    "name": "Лежак для собак",
+    "price": 2500,
+    "image": "https://molli.com.ua/image/cachewebp/catalog/easyphoto/1420/lezhbezh-png-3-500x500.webp",
+    "article": "DOG579",
+    "color": "Голубой"
+    },
+    {
+    "id": 11,
+    "name": "Куртка для собак",
+    "price": 1500,
+    "image": "https://pethouse.ua/assets/images/prods/collar/0000148341.jpg",
+    "article": "DOG802",
+    "color": "Оранжевый"
+    },
+    {
+    "id": 12,
+    "name": "Корм для собак",
+    "price": 900,
+    "image": "https://basket-04.wb.ru/vol602/part60295/60295740/images/c516x688/1.jpg",
+    "article": "DOG803"}]
