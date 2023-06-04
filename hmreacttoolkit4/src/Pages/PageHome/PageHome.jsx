@@ -3,12 +3,14 @@ import Button from "../../components/Button/Button";
 import ProductCard from "../../components/Product/ProductCard/ProductCard";
 import ProductWrapper from "../../components/Product/ProductWrapper/ProductWrapper";
 import { useModal } from "../../helpers/hooks/useModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionAddToCart } from "../../store/cart/actionCart";
 
-const PageHome = ({ removeFavorites, addFavorites, addToCart }) => {
+const PageHome = () => {
     const products = useSelector((state) => state.cards.products);
     const { isModal, toggleModal } = useModal();
     const readyToCart = useSelector((state) => state.cart.readyToCart);
+    const dispatch = useDispatch();
     return (
         <>
             <ProductWrapper>
@@ -17,9 +19,7 @@ const PageHome = ({ removeFavorites, addFavorites, addToCart }) => {
                         <ProductCard
                             key={card.id}
                             card={card}
-                            addFavorite={addFavorites}
-                            removeFavorites={removeFavorites}
-                            addToCart
+                            actionAddToCart
                             star
                         />
                     );
@@ -34,7 +34,7 @@ const PageHome = ({ removeFavorites, addFavorites, addToCart }) => {
                         <>
                             <Button
                                 onClick={() => {
-                                    addToCart(readyToCart);
+                                    dispatch(actionAddToCart(readyToCart));
                                     toggleModal();
                                 }}
                                 text={"Добавить"}

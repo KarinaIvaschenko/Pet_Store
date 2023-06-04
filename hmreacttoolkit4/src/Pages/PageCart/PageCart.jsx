@@ -4,12 +4,15 @@ import ProductWrapper from "../../components/Product/ProductWrapper/ProductWrapp
 import Button from "../../components/Button";
 import Modal from "../../components/Modal/Modal";
 import { useModal } from "../../helpers/hooks/useModal";
+import { useDispatch } from "react-redux";
+import { actionRemoveCart } from "../../store/cart/actionCart";
 
-const PageCart = ({ addFavorites, removeFavorites, removeCart }) => {
+const PageCart = ({ removeCart }) => {
     const arrCart = JSON.parse(localStorage.getItem("cart")) || [];
     const [isRemovedCard, setIsRemovedCard] = useState(null);
 
     const { isModal, toggleModal } = useModal();
+    const dispatch = useDispatch();
     return (
         <>
             <ProductWrapper>
@@ -18,8 +21,6 @@ const PageCart = ({ addFavorites, removeFavorites, removeCart }) => {
                         <ProductCard
                             key={card.id}
                             card={card}
-                            addFavorite={addFavorites}
-                            removeFavorites={removeFavorites}
                             openModal={toggleModal}
                             cross
                             readyToRemoveCard={setIsRemovedCard}
@@ -36,7 +37,7 @@ const PageCart = ({ addFavorites, removeFavorites, removeCart }) => {
                         <>
                             <Button
                                 onClick={() => {
-                                    removeCart(isRemovedCard);
+                                    dispatch(actionRemoveCart(isRemovedCard));
                                     toggleModal();
                                 }}
                                 text={"Удалить"}

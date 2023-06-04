@@ -6,29 +6,30 @@ import { ReactComponent as Cross } from "./img/cross.svg";
 import "./ProductCard.scss";
 import { useModal } from "../../../helpers/hooks/useModal";
 import { useDispatch } from "react-redux";
-import { actionCart } from "../../../store/cart/actionCart";
+import {
+    actionAddToCart,
+    actionReadyCart,
+} from "../../../store/cart/actionCart";
+import {
+    actionAddFavorites,
+    actionRemoveFavorites,
+} from "../../../store/favorites/actionFavorites";
 
 const checkIsFavorites = (id) => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     return favorites.find((item) => item.id === id) ? true : false;
 };
 
-const ProductCard = ({
-    card,
-    addFavorite,
-    removeFavorites,
-    addToCart,
-    star,
-    cross,
-    readyToRemoveCard,
-}) => {
+const ProductCard = ({ card, star, cross, readyToRemoveCard }) => {
     const [isFavorites, setIsFavorites] = useState(checkIsFavorites(card.id));
     const { toggleModal } = useModal();
+
     const { image, title, price, vendorСode, color } = card;
     const dispatch = useDispatch();
     const addReadyToCart = (card) => {
-        dispatch(actionCart(card));
+        dispatch(actionReadyCart(card));
     };
+
     return (
         <div className="productCard">
             <img className="img" src={image} alt="" />
@@ -42,9 +43,9 @@ const ProductCard = ({
                     onClick={() => {
                         setIsFavorites((prev) => !prev);
                         if (!isFavorites) {
-                            addFavorite(card);
+                            dispatch(actionAddFavorites(card));
                         } else {
-                            removeFavorites(card);
+                            dispatch(actionRemoveFavorites(card));
                         }
                     }}
                 >
@@ -62,7 +63,7 @@ const ProductCard = ({
                     <Cross />
                 </button>
             )}
-            {addToCart && (
+            {actionAddToCart && (
                 <Button
                     onClick={() => {
                         addReadyToCart(card);

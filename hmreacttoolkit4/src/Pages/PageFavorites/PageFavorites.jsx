@@ -3,13 +3,15 @@ import ProductWrapper from "../../components/Product/ProductWrapper/ProductWrapp
 import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button";
 import { useModal } from "../../helpers/hooks/useModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionAddToCart } from "../../store/cart/actionCart";
 
-const PageFavorites = ({ addReadyToCart, removeFavorites, addToCart }) => {
+const PageFavorites = ({ addReadyToCart }) => {
     const arrFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     const { isModal, toggleModal } = useModal();
     const readyToCart = useSelector((state) => state.cart.readyToCart);
+    const dispatch = useDispatch();
     return (
         <>
             <ProductWrapper>
@@ -19,9 +21,8 @@ const PageFavorites = ({ addReadyToCart, removeFavorites, addToCart }) => {
                             key={card.id}
                             card={card}
                             openModal={toggleModal}
-                            removeFavorites={removeFavorites}
                             addReadyToCart={addReadyToCart}
-                            addToCart
+                            actionAddToCart
                             star
                         />
                     );
@@ -36,7 +37,7 @@ const PageFavorites = ({ addReadyToCart, removeFavorites, addToCart }) => {
                         <>
                             <Button
                                 onClick={() => {
-                                    addToCart(readyToCart);
+                                    dispatch(actionAddToCart(readyToCart));
                                     toggleModal();
                                 }}
                                 text={"Добавить"}
