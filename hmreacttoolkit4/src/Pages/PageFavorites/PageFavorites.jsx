@@ -22,7 +22,7 @@ const PageFavorites = ({ addReadyToCart }) => {
                             card={card}
                             openModal={toggleModal}
                             addReadyToCart={addReadyToCart}
-                            actionAddToCart
+                            addToCart
                             star
                         />
                     );

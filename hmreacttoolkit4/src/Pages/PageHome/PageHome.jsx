@@ -16,12 +16,7 @@ const PageHome = () => {
             <ProductWrapper>
                 {products.map((card) => {
                     return (
-                        <ProductCard
-                            key={card.id}
-                            card={card}
-                            actionAddToCart
-                            star
-                        />
+                        <ProductCard key={card.id} card={card} addToCart star />
                     );
                 })}
             </ProductWrapper>

@@ -7,7 +7,7 @@ import { useModal } from "../../helpers/hooks/useModal";
 import { useDispatch } from "react-redux";
 import { actionRemoveCart } from "../../store/cart/actionCart";
 
-const PageCart = ({ removeCart }) => {
+const PageCart = () => {
     const arrCart = JSON.parse(localStorage.getItem("cart")) || [];
     const [isRemovedCard, setIsRemovedCard] = useState(null);
 

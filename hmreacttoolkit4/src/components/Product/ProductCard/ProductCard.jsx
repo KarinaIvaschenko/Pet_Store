@@ -6,10 +6,7 @@ import { ReactComponent as Cross } from "./img/cross.svg";
 import "./ProductCard.scss";
 import { useModal } from "../../../helpers/hooks/useModal";
 import { useDispatch } from "react-redux";
-import {
-    actionAddToCart,
-    actionReadyCart,
-} from "../../../store/cart/actionCart";
+import { actionReadyCart } from "../../../store/cart/actionCart";
 import {
     actionAddFavorites,
     actionRemoveFavorites,
@@ -20,7 +17,7 @@ const checkIsFavorites = (id) => {
     return favorites.find((item) => item.id === id) ? true : false;
 };
 
-const ProductCard = ({ card, star, cross, readyToRemoveCard }) => {
+const ProductCard = ({ card, star, cross, addToCart, readyToRemoveCard }) => {
     const [isFavorites, setIsFavorites] = useState(checkIsFavorites(card.id));
     const { toggleModal } = useModal();
 
@@ -63,7 +60,7 @@ const ProductCard = ({ card, star, cross, readyToRemoveCard }) => {
                     <Cross />
                 </button>
             )}
-            {actionAddToCart && (
+            {addToCart && (
                 <Button
                     onClick={() => {
                         addReadyToCart(card);
