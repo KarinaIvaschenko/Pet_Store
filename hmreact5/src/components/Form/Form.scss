@@ -1,0 +1,42 @@
+.form {
+    display: grid;
+    gap: 14px;
+    width: 400px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+.label {
+    background: #bd52f6;
+    background: -webkit-linear-gradient(45deg, #bd52f6 0%, #e3e021 50%);
+    background: -moz-linear-gradient(45deg, #bd52f6 0%, #e3e021 50%);
+    background: linear-gradient(45deg, #bd52f6 0%, #e3e021 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.input {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    box-shadow: 10px 10px 40px #c5c5c5, -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}
+
+.input:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 10px 10px 40px #c5c5c5, inset -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}
+
+.button--size {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.errors {
+    color: red;
+    font-size: 14px;
+}
