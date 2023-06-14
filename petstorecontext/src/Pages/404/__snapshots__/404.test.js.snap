@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 snapshot 404 1`] = `
+<div>
+  <div
+    class="pageError"
+    data-testid="pageError"
+  >
+    <h1
+      class="pageError_title"
+    >
+      Страницы не существует
+    </h1>
+    <img
+      alt=""
+      class="pageError__img"
+      height="500"
+      src="https://www.meme-arsenal.com/memes/93868ba99b0018627fd5c5353b137ba5.jpg"
+      width="600"
+    />
+  </div>
+</div>
+`;

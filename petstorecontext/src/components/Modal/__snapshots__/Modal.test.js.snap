@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal snapshot Modal 1`] = `
+<div>
+  <div
+    class="modal"
+  >
+    <div
+      class="modalWind"
+    >
+      <h1
+        class="title"
+      />
+      <button
+        class="close"
+      >
+        <svg>
+          Close.svg
+        </svg>
+      </button>
+      <p
+        class="text"
+      />
+      <div
+        class="actions"
+      />
+    </div>
+  </div>
+</div>
+`;
